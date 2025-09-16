@@ -22,14 +22,14 @@ function App() {
           <Route element={<PublicRoutes />}>
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/home" element={<Home />} />
+            <Route index element={<Home />} />
+            <Route path="/movies/:id/" element={<Filme />} />
           </Route>
 
           <Route element={<PrivateRoutes />}>
-            <Route path="/movies/:id/" element={<Filme />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/sessions/:sessaoId/cadeiras" element={<Cadeiras />} />
+            <Route index element={<Home />} />
             <Route
               path="/sessions/:sessaoId/:cadeiraId/:userId"
               element={<Reserva />}
@@ -41,7 +41,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/movies/:id/" element={<Filme />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Home />} />
+
             <Route path="/sessions/:sessaoId/cadeiras" element={<Cadeiras />} />
             <Route
               path="/sessions/:sessaoId/:cadeiraId/:userId"

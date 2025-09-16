@@ -14,15 +14,41 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
-      await api.post("/users/cadastro", { name, email, password });
+      const response = await api.post("/users/cadastro", {
+        name,
+        email,
+        password,
+      });
+      console.log(response);
+      const { user, token } = response.data;
+      localStorage.setItem("id", user.id);
+      localStorage.setItem("name", user.name);
+      localStorage.setItem("token", token);
+
       Swal.fire({
-        title: "Cadastro realizado com sucesso!",
-        icon: "sucess",
+        title: "Conta criada com sucesso!",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
         confirmButtonText: "Ok",
-        isConfirmed: navigate("/home"),
+        background: "#0c0a3e",
+        color: "#e94560",
+      }).then(() => {
+        navigate("/");
       });
     } catch (error) {
-      alert("Erro ao cadastrar usuário", error);
+      console.log(error);
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Um erro aconteceu ao criar sua conta",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
 

@@ -1,6 +1,7 @@
 import api from "../../../../api";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import "./reserva.css";
 
 export default function Reserva() {
@@ -26,13 +27,33 @@ export default function Reserva() {
           },
         }
       );
-      alert("Reserva feita com sucesso");
-      navigate("/");
+      Swal.fire({
+        title: "Reserva feita!",
+        text: "Sua cadeira foi reservada com sucesso.",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
+        confirmButtonText: "Ok",
+        background: "#0c0a3e",
+        color: "#e94560",
+      }).then(() => {
+        navigate("/");
+      });
     } catch (error) {
       console.log(error);
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Não foi possível fazer a reserva.",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
-
   useEffect(() => {
     async function Sessao() {
       try {
@@ -52,6 +73,7 @@ export default function Reserva() {
         await api.get(`/movies/${sessao.filmeId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response);
       } catch (error) {
         console.log(error);
       }

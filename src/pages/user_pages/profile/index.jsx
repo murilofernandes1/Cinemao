@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./profile.css";
 import api from "../../../../api";
+import Swal from "sweetalert2";
 
 export default function Profile() {
   const id = localStorage.getItem("id");
@@ -56,10 +57,28 @@ export default function Profile() {
       setName(response.data.name);
       localStorage.setItem("name", response.data.name);
 
-      alert("Nome atualizado com sucesso!");
+      Swal.fire({
+        title: "Nome de usuário atualizado com sucesso!",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
+        confirmButtonText: "Ok",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     } catch (error) {
       console.log(error);
-      alert("Não foi possível alterar o nome do usuário");
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Não foi possível alterar seu nome de usuário.",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
 
@@ -73,10 +92,28 @@ export default function Profile() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      alert("Email atualizado com sucesso!");
+      Swal.fire({
+        title: "Email atualizado com sucesso!",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
+        confirmButtonText: "Ok",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     } catch (error) {
       console.log(error);
-      alert("Não foi possível alterar o email do usuário");
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Não foi possível alterar seu email.",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
 
@@ -90,10 +127,28 @@ export default function Profile() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      alert("Senha atualizada com sucesso!");
+      Swal.fire({
+        title: "Senha atualizada com sucesso!",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
+        confirmButtonText: "Ok",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     } catch (error) {
       console.log(error);
-      alert("Não foi possível alterar a senha do usuário");
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Não foi possível alterar sua senha.",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
 
@@ -101,7 +156,7 @@ export default function Profile() {
     <>
       <div className="perfil-container">
         <div className="ola">
-          <h1>Olá, </h1>
+          <p>Olá,</p>
           <span>{name}</span>
         </div>
 
@@ -131,7 +186,7 @@ export default function Profile() {
                   </p>
                   <p>
                     <span className="label">Cadeira:</span>{" "}
-                    <span className="valor">{reserva.numeracao}</span>
+                    <span className="valor">{reserva.cadeira}</span>
                   </p>
                   <p>
                     <span className="label">Sala:</span>{" "}
