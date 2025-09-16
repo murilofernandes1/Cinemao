@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "./delete.css";
 import api from "../../../api";
 export default function DeleteReserva() {
   const navigate = useNavigate("");
@@ -39,10 +40,16 @@ export default function DeleteReserva() {
   return (
     <>
       <div>
-        <p>Aqui vou deletar as reservas</p>
         {reserva && (
-          <div>
-            <p className="filme">{reserva.sessao.filme.titulo}</p>
+          <div className="reserva">
+            <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
+              <h1>Deseja cancelar a seguinte</h1>
+              <h1 style={{ color: "#e94560" }}>reserva?</h1>
+            </div>
+            <p>
+              <span className="label">Filme:</span>{" "}
+              <span className="valor">{reserva.sessao.filme.titulo}</span>
+            </p>
             <p>
               <span className="label">Horário:</span>{" "}
               <span className="valor">
@@ -57,9 +64,11 @@ export default function DeleteReserva() {
               <span className="label">Sala:</span>{" "}
               <span className="valor">{reserva.sessao.sala.numeroSala}</span>
             </p>
+            <button className="deletar" onClick={deletarReserva}>
+              Deletar reserva
+            </button>
           </div>
         )}
-        <button onClick={deletarReserva}>Deletar reserva</button>
       </div>
     </>
   );

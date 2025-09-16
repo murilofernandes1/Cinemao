@@ -28,12 +28,13 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/movies/:id/" element={<Filme />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/sessions/:sessaoId/cadeiras" element={<Cadeiras />} />
             <Route
               path="/sessions/:sessaoId/:cadeiraId/:userId"
               element={<Reserva />}
             />
+            <Route path="/reserva/:id" element={<DeleteReserva />} />
           </Route>
 
           <Route element={<AdminRoutes />}>
@@ -47,7 +48,6 @@ function App() {
               element={<Reserva />}
             />
           </Route>
-          <Route path="/reserva/:id" element={<DeleteReserva />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

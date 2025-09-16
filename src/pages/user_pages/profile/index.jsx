@@ -122,22 +122,20 @@ export default function Profile() {
                   className="handleReservas"
                   key={reserva.id}
                 >
-                  <p className="filme">{reserva.sessao.filme.titulo}</p>
+                  <p className="filme">{reserva.filme}</p>
                   <p>
                     <span className="label">Horário:</span>{" "}
                     <span className="valor">
-                      {new Date(reserva.sessao.dataHora).toLocaleString()}
+                      {new Date(reserva.dataHora).toLocaleString()}
                     </span>
                   </p>
                   <p>
                     <span className="label">Cadeira:</span>{" "}
-                    <span className="valor">{reserva.cadeira.numeracao}</span>
+                    <span className="valor">{reserva.numeracao}</span>
                   </p>
                   <p>
                     <span className="label">Sala:</span>{" "}
-                    <span className="valor">
-                      {reserva.sessao.sala.numeroSala}
-                    </span>
+                    <span className="valor">{reserva.numeroSala}</span>
                   </p>
                 </button>
               ))

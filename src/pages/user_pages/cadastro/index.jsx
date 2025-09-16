@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../../../api";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import "./cadastro.css";
 
 export default function Cadastro() {
@@ -14,8 +15,12 @@ export default function Cadastro() {
 
     try {
       await api.post("/users/cadastro", { name, email, password });
-      alert("Cadastro realizado com sucesso!");
-      navigate("/");
+      Swal.fire({
+        title: "Cadastro realizado com sucesso!",
+        icon: "sucess",
+        confirmButtonText: "Ok",
+        isConfirmed: navigate("/home"),
+      });
     } catch (error) {
       alert("Erro ao cadastrar usuário", error);
     }

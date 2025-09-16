@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Header from "../components/header";
+import Footer from "../components/header/footer";
 
 export default function PrivateRoute() {
   const token = localStorage.getItem("token");
@@ -26,6 +27,7 @@ export default function PrivateRoute() {
     <>
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 }

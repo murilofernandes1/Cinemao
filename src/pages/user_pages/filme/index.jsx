@@ -38,12 +38,13 @@ export default function Filme() {
           {movie && (
             <>
               <p className="filme-titulo">{movie.titulo}</p>
-              <div style={{ display: "flex", gap: "5px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 <p
                   style={{
                     fontWeight: "700",
                     color: "#e94560",
                     fontSize: "1.2rem",
+                    marginBottom: "-1rem",
                   }}
                 >
                   Sinopse:{" "}
