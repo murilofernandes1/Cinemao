@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Fundo azul escuro -->
+  <rect width="64" height="64" fill="#0b0636" rx="12"></rect>
+
+  <!-- Letra C em branco -->
+  <text x="18" y="44" font-family="Arial, sans-serif" font-weight="bold" font-size="36" fill="#ffffff">
+    C
+  </text>
+
+  <!-- Til vermelho centralizado -->
+  <text x="26" y="22" font-family="Arial, sans-serif" font-weight="bold" font-size="22" fill="#e63946">
+    ~
+  </text>
+</svg>

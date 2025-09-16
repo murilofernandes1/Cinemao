@@ -1,0 +1,52 @@
+.cinema-container {
+  padding: 30px;
+  background-color: #0c0a3e;
+  min-height: 100vh;
+  color: #eee5e9;
+  font-family: "Inter", sans-serif;
+}
+
+.cinema-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.cinema-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.cinema-card {
+  position: relative;
+  width: 220px;
+  height: 330px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cinema-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 600px) {
+  .cinema-card {
+    width: 160px;
+    height: 240px;
+  }
+  .cinema-movie-title {
+    font-size: 1rem;
+  }
+  .cinema-movie-sinopse {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,51 @@
+.sessoes-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #eee5e9;
+  font-family: "Inter", sans-serif;
+}
+
+.sessoes-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #e94560;
+}
+.sessoes-container p {
+  align-self: center;
+}
+.sessao-card {
+  background-color: #1a164d;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sessao-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.sessao-card button {
+  all: unset;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.sessao-card p {
+  margin: 0;
+  font-size: 1rem;
+  color: #cfcfd9;
+}
+
+.sessao-card p:first-child {
+  font-weight: bold;
+  color: #eee5e9;
+}

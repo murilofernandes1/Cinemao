@@ -1,0 +1,153 @@
+.ola {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+.ola h1 {
+  margin-right: 5px;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+  color: #fff;
+}
+.ola span {
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+  color: #e94560;
+  font-family: "Inter", sans-serif;
+}
+
+.perfil-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #0c0a3e;
+  color: #eee5e9;
+  font-family: "Inter", sans-serif;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.perfil-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #eee5e9;
+}
+.perfil-container p {
+  align-self: center;
+  font-weight: 600;
+}
+
+.reservas-item {
+  padding: 0.8rem 1rem;
+  background-color: #1a164d;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reservas-item p {
+  margin: 0;
+  color: #eee5e9;
+}
+
+.reservas-item .reserva-valor {
+  color: #e94560;
+  font-weight: bold;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-form input {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #e94560;
+  outline: none;
+  background-color: #0c0a3e;
+  color: #eee5e9;
+  font-size: 1rem;
+}
+
+.perfil-form input:focus {
+  border-color: #ff6078;
+}
+
+.perfil-form h2 {
+  color: #e94560;
+}
+.perfil-container button:not(.handleReservas) {
+  font-family: "Inter", sans-serif;
+  background-color: #e94560;
+  color: #0c0a3e;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.perfil-container button:not(.handleReservas):hover {
+  background-color: #ff5a78;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+.handleReservas {
+  font-family: "Inter", sans-serif;
+  background-color: #1a164d;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  border: 2px solid transparent;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.handleReservas:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  background-color: #2a2360;
+  border-color: #e94560;
+}
+
+.handleReservas p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #eee5e9;
+}
+
+.handleReservas p.filme {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e94560;
+}
+
+.handleReservas .label {
+  font-weight: 700;
+  color: #ff758f;
+}
+
+.handleReservas .valor {
+  font-weight: 700;
+  color: #fff;
+}

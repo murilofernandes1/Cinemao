@@ -1,0 +1,48 @@
+.resumo-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #0c0a3e;
+  color: #eee5e9;
+  font-family: "Inter", sans-serif;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+.resumo-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #e94560;
+}
+
+.resumo-item {
+  font-size: 1rem;
+  margin: 0;
+  color: #e94560;
+  font-weight: bold;
+}
+
+.resumo-valor {
+  font-weight: bold;
+  color: #fff;
+}
+
+.confirmar-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #0c0a3e;
+  background-color: #e94560;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.confirmar-button:hover {
+  background-color: #ff6078;
+}

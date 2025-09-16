@@ -1,0 +1,24 @@
+.filme-container {
+  max-width: 100%;
+  margin-top: 40px;
+  padding: 2rem;
+  background-color: #1a164d;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #eee5e9;
+  font-family: "Inter", sans-serif;
+}
+
+.filme-titulo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #e94560;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.filme-sessoes {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
