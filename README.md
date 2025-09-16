@@ -38,6 +38,11 @@ npm run dev
 
 - Login e Cadastro via JWT Token
 - Filmes e Sessões alimentadas por uma api própria: [https://github.com/murilofernandes1/movies-api](https://github.com/murilofernandes1/movies-api)
-- Reserva de cadeiras em sessões em tempo real
-- Dashboard para admins, com administração dos filmes e sessões
-- Responsivo para mobile
+- Reserva de cadeiras em sessões em tempo real.
+- Cancelamento de reservas
+- Alteração de dados do usuário
+- Dashboard para admins, com administração dos filmes e sessões, podendo adicioná-los ou excluí-los.
+- Responsividade para mobile
+
+  ## Contato
+  [GitHub](https://github.com/murilofernandes1) | [Email](mailto:murilofernandesvaz4@gmail.com)
