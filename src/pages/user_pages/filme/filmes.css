@@ -1,24 +1,71 @@
 .filme-container {
-  max-width: 100%;
-  margin-top: 40px;
+  max-width: 900px;
+  margin: 0 auto;
   padding: 2rem;
-  background-color: #1a164d;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   color: #eee5e9;
   font-family: "Inter", sans-serif;
+  text-align: center;
 }
 
 .filme-titulo {
-  font-size: 3rem;
-  font-weight: bold;
   color: #e94560;
+  font-size: 2rem;
   margin-bottom: 1rem;
-  text-align: center;
+}
+
+.filme-sinopse {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.filme-detalhes {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.detalhe-label {
+  font-weight: 700;
+  color: #e94560;
+  margin-right: 5px;
 }
 
 .filme-sessoes {
   margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spinner-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid #e94560;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.no-movie {
+  text-align: center;
+  color: #aaa;
+  font-size: 1.2rem;
+  margin-top: 3rem;
 }
