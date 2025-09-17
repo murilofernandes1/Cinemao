@@ -8,7 +8,7 @@ export default function Reserva() {
   const [sessaoSelecionada, setSessaoSelecionada] = useState(null);
   const [cadeiraSelecionada, setCadeiraSelecionada] = useState(null);
   const [numeroSala, setNumeroSala] = useState(null);
-  const [loading, setLoading] = useState(true); // 🔹 Novo estado
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const { sessaoId, cadeiraId } = useParams();
@@ -28,10 +28,6 @@ export default function Reserva() {
           },
         }
       );
-
-      setCadeiraSelecionada(null);
-      setSessaoSelecionada(null);
-      setNumeroSala(null);
 
       Swal.fire({
         title: "Reserva feita!",
@@ -62,8 +58,11 @@ export default function Reserva() {
   }
 
   useEffect(() => {
+    setCadeiraSelecionada(null);
+    setSessaoSelecionada(null);
+    setNumeroSala(null);
     async function carregarDados() {
-      setLoading(true); // 🔹 Começou carregar
+      setLoading(true);
       try {
         const sessaoResponse = await api.get(`/sessions/${sessaoId}`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -96,7 +95,7 @@ export default function Reserva() {
       } catch (error) {
         console.log(error.response?.data || error.message);
       } finally {
-        setLoading(false); // 🔹 Terminou carregar
+        setLoading(false);
       }
     }
 
@@ -107,7 +106,7 @@ export default function Reserva() {
     <div className="resumo-container">
       <h1>Resumo da sua reserva</h1>
 
-      {loading ? ( // 🔹 Enquanto carrega
+      {loading ? (
         <div className="spinner"></div>
       ) : (
         <>
