@@ -60,7 +60,7 @@ export default function Login() {
           disabled={loading}
         />
         <button className="input-button" disabled={loading}>
-          {loading ? <div className="spinner"></div> : "Entrar"}{" "}
+          Entrar
         </button>
       </form>
       <div className="login">

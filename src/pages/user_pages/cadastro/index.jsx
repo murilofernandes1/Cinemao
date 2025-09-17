@@ -9,17 +9,18 @@ export default function Cadastro() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await api.post("/users/cadastro", {
         name,
         email,
         password,
       });
-      console.log(response);
+
       const { user, token } = response.data;
       localStorage.setItem("id", user.id);
       localStorage.setItem("name", user.name);
@@ -38,7 +39,6 @@ export default function Cadastro() {
       });
     } catch (error) {
       console.log(error);
-
       Swal.fire({
         title: "Erro!",
         text: "Um erro aconteceu ao criar sua conta",
@@ -49,11 +49,19 @@ export default function Cadastro() {
         background: "#0c0a3e",
         color: "#e94560",
       });
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="container">
+      {loading && (
+        <div className="spinner-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <h1>Cadastro</h1>
       <form onSubmit={handleSubmit} className="form-cadastro">
         <input
@@ -61,12 +69,14 @@ export default function Cadastro() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Nome"
+          disabled={loading}
         />
         <input
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          disabled={loading}
         />
         <input
           required
@@ -74,8 +84,11 @@ export default function Cadastro() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Senha"
+          disabled={loading}
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit" disabled={loading}>
+          Cadastrar
+        </button>
         <div className="login">
           <p>Já tem uma conta?</p>
           <Link to={"/login"}>Entrar</Link>
