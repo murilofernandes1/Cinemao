@@ -18,8 +18,8 @@ export default function Filme() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        setMovie(response.data);
-        console.log(response.data);
+        setMovie(response.data.movies);
+        console.log(response.data.movies);
       } catch (error) {
         console.log(error);
       } finally {
