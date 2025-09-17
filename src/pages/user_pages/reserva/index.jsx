@@ -27,6 +27,8 @@ export default function Reserva() {
           },
         }
       );
+      setCadeiraSelecionada(""), setSessaoSelecionada("");
+      setNumeroSala("");
       Swal.fire({
         title: "Reserva feita!",
         text: "Sua cadeira foi reservada com sucesso.",
