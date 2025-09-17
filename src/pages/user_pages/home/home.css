@@ -18,6 +18,8 @@
   flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
+  align-items: center; /* centraliza verticalmente também */
+  min-height: 330px; /* garante espaço para o spinner no centro */
 }
 
 .cinema-card {
@@ -36,6 +38,25 @@
 .cinema-card:hover {
   transform: scale(1.07);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Spinner */
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #e94560;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 600px) {
