@@ -6,23 +6,24 @@
   background-color: #1a164d;
   border-radius: 12px;
   padding: 0.7rem 1.5rem;
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   border: 2px solid transparent;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   width: 50%;
   margin: 20px 25%;
 }
+
 .label {
   color: #e94560;
   font-weight: 700;
   font-size: 1.2rem;
 }
+
 .valor {
   font-weight: 700;
   font-size: 1.2rem;
 }
+
 .deletar {
   width: 100%;
   padding: 12px 0;
@@ -38,4 +39,57 @@
 
 .deletar:hover {
   background-color: #d73250;
+}
+
+@media (max-width: 1024px) {
+  .reserva {
+    width: 70%;
+    margin: 20px 15%;
+  }
+
+  .label,
+  .valor {
+    font-size: 1.1rem;
+  }
+
+  .deletar {
+    font-size: 0.95rem;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .reserva {
+    width: 85%;
+    margin: 15px auto;
+    padding: 0.6rem 1rem;
+  }
+
+  .label,
+  .valor {
+    font-size: 1rem;
+  }
+
+  .deletar {
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .reserva {
+    width: 95%;
+    margin: 10px auto;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .label,
+  .valor {
+    font-size: 0.95rem;
+  }
+
+  .deletar {
+    font-size: 0.85rem;
+    padding: 6px 0;
+  }
 }

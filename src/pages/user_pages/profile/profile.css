@@ -4,11 +4,13 @@
   align-self: center;
   gap: 7px;
 }
+
 .ola p {
   font-size: 3rem;
   margin: 0;
   color: #fff;
 }
+
 .ola span {
   font-weight: 700;
   font-size: 3rem;
@@ -36,6 +38,7 @@
   margin-bottom: 0.5rem;
   color: #eee5e9;
 }
+
 .perfil-container p {
   align-self: center;
   font-weight: 600;
@@ -83,6 +86,7 @@
 .perfil-form h2 {
   color: #e94560;
 }
+
 .perfil-container button:not(.handleReservas) {
   font-family: "Inter", sans-serif;
   background-color: #e94560;
@@ -103,6 +107,7 @@
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
+
 .handleReservas {
   font-family: "Inter", sans-serif;
   background-color: #1a164d;
@@ -148,4 +153,111 @@
 .handleReservas .valor {
   font-weight: 700;
   color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .ola p,
+  .ola span {
+    font-size: 2.5rem;
+  }
+
+  .perfil-container {
+    max-width: 90%;
+    padding: 1.8rem;
+  }
+
+  .perfil-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .perfil-form input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .perfil-container button:not(.handleReservas) {
+    font-size: 1rem;
+    padding: 0.7rem 1.8rem;
+  }
+
+  .handleReservas p {
+    font-size: 0.95rem;
+  }
+
+  .handleReservas p.filme {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ola p,
+  .ola span {
+    font-size: 2rem;
+  }
+
+  .perfil-container {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .perfil-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .perfil-form input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .perfil-container button:not(.handleReservas) {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .handleReservas p {
+    font-size: 0.9rem;
+  }
+
+  .handleReservas p.filme {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ola {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .ola p,
+  .ola span {
+    font-size: 1.8rem;
+  }
+
+  .perfil-container {
+    padding: 1rem;
+  }
+
+  .perfil-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .perfil-form input {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .perfil-container button:not(.handleReservas) {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+  }
+
+  .handleReservas p {
+    font-size: 0.85rem;
+  }
+
+  .handleReservas p.filme {
+    font-size: 0.95rem;
+  }
 }

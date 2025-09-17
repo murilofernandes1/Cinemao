@@ -1,20 +1,40 @@
-.footer {
-  width: 100%;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   background-color: #0c0a3e;
   color: #eee5e9;
-  text-align: center;
-
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-  bottom: 0;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-.footer a {
+.page-container a {
   color: #e94560;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer a:hover {
+.page-container a:hover {
   color: #ff5a78;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    font-size: 0.8rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    font-size: 0.7rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .page-container a {
+    display: block;
+    margin: 0.3rem 0;
+  }
 }

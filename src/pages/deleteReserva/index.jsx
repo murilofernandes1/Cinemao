@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./delete.css";
+import Swal from "sweetalert2";
 import api from "../../../api";
 export default function DeleteReserva() {
   const navigate = useNavigate("");
@@ -14,10 +15,30 @@ export default function DeleteReserva() {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Reserva excluida com sucesso!");
-      navigate("/");
+      Swal.fire({
+        title: "Reserva cancelada com sucesso!",
+        icon: "success",
+        iconColor: "#e94560",
+        confirmButtonColor: "#e94560",
+        confirmButtonText: "Ok",
+        background: "#0c0a3e",
+        color: "#e94560",
+      }).then(() => {
+        navigate("/");
+      });
     } catch (error) {
       console.log(error);
+
+      Swal.fire({
+        title: "Erro!",
+        text: "Não foi possível cancelar sua reserva.",
+        icon: "error",
+        iconColor: "#e94560",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#e94560",
+        background: "#0c0a3e",
+        color: "#e94560",
+      });
     }
   }
   useEffect(() => {
