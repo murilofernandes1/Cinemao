@@ -30,39 +30,48 @@ h2 {
   max-width: 500px;
   background-color: #2a2360;
   border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .sessao-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .sessao-button {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   padding: 1rem 1.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
   color: inherit;
-  font-size: 1rem;
 }
 
 .sessao-info {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.3rem;
   font-weight: 700;
 }
 
 .sessao-info p {
-  color: #e94560;
   margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #e94560;
 }
 
 .sessao-info span {
   font-weight: 700;
   color: #fff;
+}
+
+.sessao-info p.filme {
+  font-size: 1.2rem;
 }
 
 .no-sessoes {
@@ -95,6 +104,8 @@ h2 {
     transform: rotate(360deg);
   }
 }
+
+/* MOBILE */
 @media (max-width: 600px) {
   .sessoes-container {
     padding: 1rem;
@@ -106,19 +117,21 @@ h2 {
 
   .sessao-card {
     max-width: 100%;
+    padding: 0.8rem;
   }
 
   .sessao-button {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-    padding: 1rem 1.2rem;
-    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    gap: 0.5rem;
   }
 
   .sessao-info {
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
+  }
+
+  .sessao-info p.filme {
+    font-size: 1rem;
   }
 
   h1,
