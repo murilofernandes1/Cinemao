@@ -4,7 +4,6 @@ import Footer from "../components/header/footer";
 import HeaderAdm from "../components/headerAdm";
 
 export default function AdminRoutes() {
-  const ADMIN = "ADMIN";
   const token = localStorage.getItem("token");
 
   if (!token) {
@@ -16,11 +15,12 @@ export default function AdminRoutes() {
   if (!decoded || decoded.role !== "ADMIN") {
     return <Navigate to="/login" />;
   }
-  if (token || ADMIN) {
-    return (
-      <>
-        <HeaderAdm /> <Outlet /> <Footer />
-      </>
-    );
-  }
+
+  return (
+    <>
+      <HeaderAdm />
+      <Outlet />
+      <Footer />
+    </>
+  );
 }

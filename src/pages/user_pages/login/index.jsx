@@ -7,9 +7,11 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await api.post("/users/login", { email, password });
       const { token, role, name, id } = data;
@@ -25,11 +27,19 @@ export default function Login() {
       }
     } catch (error) {
       alert(error.response?.data?.message || "Erro ao tentar logar");
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="container">
+      {loading && (
+        <div className="spinner-overlay">
+          <div className="spinner"></div>
+        </div>
+      )}
+
       <h1>Entrar</h1>
       <form onSubmit={handleSubmit} className="form-login">
         <input
@@ -38,6 +48,7 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           className="input-login"
           placeholder="Digite seu email"
+          disabled={loading}
         />
         <input
           required
@@ -46,8 +57,11 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           className="input-login"
           placeholder="Digite sua senha"
+          disabled={loading}
         />
-        <button className="input-button">Entrar</button>
+        <button className="input-button" disabled={loading}>
+          {loading ? <div className="spinner"></div> : "Entrar"}{" "}
+        </button>
       </form>
       <div className="login">
         <p>Ainda não tem uma conta?</p>
