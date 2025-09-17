@@ -8,6 +8,7 @@ export default function Reserva() {
   const [sessaoSelecionada, setSessaoSelecionada] = useState(null);
   const [cadeiraSelecionada, setCadeiraSelecionada] = useState(null);
   const [numeroSala, setNumeroSala] = useState(null);
+  const [loading, setLoading] = useState(true); // 🔹 Novo estado
   const navigate = useNavigate();
 
   const { sessaoId, cadeiraId } = useParams();
@@ -28,7 +29,6 @@ export default function Reserva() {
         }
       );
 
-      // 🔹 Resetando corretamente os estados
       setCadeiraSelecionada(null);
       setSessaoSelecionada(null);
       setNumeroSala(null);
@@ -63,8 +63,8 @@ export default function Reserva() {
 
   useEffect(() => {
     async function carregarDados() {
+      setLoading(true); // 🔹 Começou carregar
       try {
-        // 🔹 Pega a sessão primeiro
         const sessaoResponse = await api.get(`/sessions/${sessaoId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -75,7 +75,6 @@ export default function Reserva() {
 
         setSessaoSelecionada(sessao);
 
-        // 🔹 Busca sala + cadeiras em paralelo
         const [salaResponse, cadeirasResponse] = await Promise.all([
           api.get(`/salas/${sessao.salaId}`, {
             headers: { Authorization: `Bearer ${token}` },
@@ -85,19 +84,19 @@ export default function Reserva() {
           }),
         ]);
 
-        // Atualiza sala
         const numero = Array.isArray(salaResponse.data)
           ? salaResponse.data[0].numeroSala
           : salaResponse.data.numeroSala;
         setNumeroSala(numero);
 
-        // Atualiza cadeira
         const cadeira = cadeirasResponse.data.find(
-          (c) => c.id === Number(cadeiraId) // 🔹 compara como number
+          (c) => c.id === Number(cadeiraId)
         );
         setCadeiraSelecionada(cadeira);
       } catch (error) {
         console.log(error.response?.data || error.message);
+      } finally {
+        setLoading(false); // 🔹 Terminou carregar
       }
     }
 
@@ -108,45 +107,56 @@ export default function Reserva() {
     <div className="resumo-container">
       <h1>Resumo da sua reserva</h1>
 
-      {sessaoSelecionada && (
+      {loading ? ( // 🔹 Enquanto carrega
+        <div className="spinner"></div>
+      ) : (
         <>
-          <p className="resumo-item">
-            Filme:{" "}
-            <span className="resumo-valor">
-              {sessaoSelecionada.filme.titulo}
-            </span>
-          </p>
-          <p className="resumo-item">
-            Horário:{" "}
-            <span className="resumo-valor">
-              {new Date(sessaoSelecionada.dataHora).toLocaleString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </span>
-          </p>
+          {sessaoSelecionada && (
+            <>
+              <p className="resumo-item">
+                Filme:{" "}
+                <span className="resumo-valor">
+                  {sessaoSelecionada.filme.titulo}
+                </span>
+              </p>
+              <p className="resumo-item">
+                Horário:{" "}
+                <span className="resumo-valor">
+                  {new Date(sessaoSelecionada.dataHora).toLocaleString(
+                    "pt-BR",
+                    {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }
+                  )}
+                </span>
+              </p>
+            </>
+          )}
+
+          {numeroSala && (
+            <p className="resumo-item">
+              Sala: <span className="resumo-valor">{numeroSala}</span>
+            </p>
+          )}
+
+          {cadeiraSelecionada && (
+            <p className="resumo-item">
+              Cadeira:{" "}
+              <span className="resumo-valor">
+                {cadeiraSelecionada.numeracao}
+              </span>
+            </p>
+          )}
+
+          <button className="confirmar-button" onClick={Reservar}>
+            Confirmar Reserva
+          </button>
         </>
       )}
-
-      {numeroSala && (
-        <p className="resumo-item">
-          Sala: <span className="resumo-valor">{numeroSala}</span>
-        </p>
-      )}
-
-      {cadeiraSelecionada && (
-        <p className="resumo-item">
-          Cadeira:{" "}
-          <span className="resumo-valor">{cadeiraSelecionada.numeracao}</span>
-        </p>
-      )}
-
-      <button className="confirmar-button" onClick={Reservar}>
-        Confirmar Reserva
-      </button>
     </div>
   );
 }
