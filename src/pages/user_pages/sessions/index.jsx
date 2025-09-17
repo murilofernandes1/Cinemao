@@ -7,7 +7,6 @@ export default function Sessions() {
   const { id } = useParams();
   const [sessoes, setSessoes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filme, setFilme] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,11 +14,6 @@ export default function Sessions() {
       const token = localStorage.getItem("token");
       setLoading(true);
       try {
-        const movieResponse = await api.get(`/movies/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setFilme(movieResponse.data);
-
         const sessionsResponse = await api.get(`/movies/${id}/sessions`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -41,20 +35,6 @@ export default function Sessions() {
         </div>
       ) : (
         <>
-          {filme && (
-            <div className="filme-info">
-              <h1>{filme.titulo}</h1>
-              <p>{filme.sinopse}</p>
-              <div className="filme-detalhes">
-                <span>Duração: {filme.duracao} min</span>
-                <span>
-                  Lançamento:{" "}
-                  {new Date(filme.dataLancamento).toLocaleDateString("pt-BR")}
-                </span>
-              </div>
-            </div>
-          )}
-
           <h2>Sessões disponíveis</h2>
 
           {sessoes.length > 0 ? (
