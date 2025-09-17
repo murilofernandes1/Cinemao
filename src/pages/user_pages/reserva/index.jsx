@@ -27,8 +27,8 @@ export default function Reserva() {
           },
         }
       );
-      setCadeiraSelecionada(""), setSessaoSelecionada("");
-      setNumeroSala("");
+      setCadeiraSelecionada(null), setSessaoSelecionada(null);
+      setNumeroSala(null);
       Swal.fire({
         title: "Reserva feita!",
         text: "Sua cadeira foi reservada com sucesso.",
@@ -57,44 +57,43 @@ export default function Reserva() {
     }
   }
   useEffect(() => {
-    async function Sessao() {
+    async function carregarDados() {
       try {
         const sessaoResponse = await api.get(`/sessions/${sessaoId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        const sessao = sessaoResponse.data[0];
+
+        const sessao = Array.isArray(sessaoResponse.data)
+          ? sessaoResponse.data[0]
+          : sessaoResponse.data;
+
         setSessaoSelecionada(sessao);
-        console.log(sessao);
 
-        const salaResponse = await api.get(`/salas/${sessao.salaId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const response = salaResponse.data[0].numeroSala;
-        setNumeroSala(response);
+        const [salaResponse, cadeirasResponse] = await Promise.all([
+          api.get(`/salas/${sessao.salaId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          api.get(`/sessions/${sessaoId}/cadeiras`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
 
-        await api.get(`/movies/${sessao.filmeId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    Sessao();
+        const numero = Array.isArray(salaResponse.data)
+          ? salaResponse.data[0].numeroSala
+          : salaResponse.data.numeroSala;
+        setNumeroSala(numero);
 
-    async function Cadeira() {
-      try {
-        const response = await api.get(`/sessions/${sessaoId}/cadeiras`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const cadeira = response.data.find((c) => c.id === cadeiraId);
+        const cadeira = cadeirasResponse.data.find(
+          (c) => c.id === Number(cadeiraId)
+        );
         setCadeiraSelecionada(cadeira);
       } catch (error) {
-        console.log(error);
+        console.log(error.response?.data || error.message);
       }
     }
-    Cadeira();
-  }, [sessaoId, token, cadeiraId]);
+
+    carregarDados();
+  }, [sessaoId, cadeiraId, token]);
 
   return (
     <>
