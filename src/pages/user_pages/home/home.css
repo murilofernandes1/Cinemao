@@ -18,8 +18,8 @@
   flex-wrap: wrap;
   gap: 25px;
   justify-content: center;
-  align-items: center; /* centraliza verticalmente também */
-  min-height: 330px; /* garante espaço para o spinner no centro */
+  align-items: center;
+  min-height: 330px;
 }
 
 .cinema-card {
