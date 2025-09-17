@@ -19,6 +19,7 @@ export default function Filme() {
         });
 
         setMovie(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       } finally {
