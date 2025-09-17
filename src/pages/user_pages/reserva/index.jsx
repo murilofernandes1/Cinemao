@@ -9,24 +9,18 @@ export default function Reserva() {
   const [cadeiraSelecionada, setCadeiraSelecionada] = useState(null);
   const [numeroSala, setNumeroSala] = useState(null);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
-
   const { sessaoId, cadeiraId } = useParams();
-
   const userId = localStorage.getItem("id");
   const token = localStorage.getItem("token");
 
   async function Reservar() {
-    const url = `/sessions/${sessaoId}/${cadeiraId}/${userId}/reserva`;
     try {
       await api.post(
-        url,
+        `/sessions/${sessaoId}/${cadeiraId}/${userId}/reserva`,
         {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       Swal.fire({
@@ -38,9 +32,7 @@ export default function Reserva() {
         confirmButtonText: "Ok",
         background: "#0c0a3e",
         color: "#e94560",
-      }).then(() => {
-        navigate("/");
-      });
+      }).then(() => navigate("/"));
     } catch (error) {
       console.log(error.response?.data || error.message);
 
@@ -58,24 +50,32 @@ export default function Reserva() {
   }
 
   useEffect(() => {
-    setCadeiraSelecionada(null);
+    // 🔹 reset dos estados
     setSessaoSelecionada(null);
+    setCadeiraSelecionada(null);
     setNumeroSala(null);
+    setLoading(true);
+
     async function carregarDados() {
-      setLoading(true);
       try {
         const sessaoResponse = await api.get(`/sessions/${sessaoId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const sessao = Array.isArray(sessaoResponse.data)
-          ? sessaoResponse.data[0]
+        const sessaoData = Array.isArray(sessaoResponse.data)
+          ? sessaoResponse.data.find((s) => Number(s.id) === Number(sessaoId))
           : sessaoResponse.data;
 
-        setSessaoSelecionada(sessao);
+        if (!sessaoData) {
+          console.error("Sessão não encontrada!");
+          setLoading(false);
+          return;
+        }
+
+        setSessaoSelecionada(sessaoData);
 
         const [salaResponse, cadeirasResponse] = await Promise.all([
-          api.get(`/salas/${sessao.salaId}`, {
+          api.get(`/salas/${sessaoData.salaId}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
           api.get(`/sessions/${sessaoId}/cadeiras`, {
@@ -83,14 +83,23 @@ export default function Reserva() {
           }),
         ]);
 
-        const numero = Array.isArray(salaResponse.data)
-          ? salaResponse.data[0].numeroSala
-          : salaResponse.data.numeroSala;
+        const numero =
+          Array.isArray(salaResponse.data) && salaResponse.data.length > 0
+            ? salaResponse.data[0].numeroSala
+            : salaResponse.data.numeroSala;
+
         setNumeroSala(numero);
 
         const cadeira = cadeirasResponse.data.find(
-          (c) => c.id === Number(cadeiraId)
+          (c) => Number(c.id) === Number(cadeiraId)
         );
+
+        if (!cadeira) {
+          console.error("Cadeira não encontrada nesta sessão!");
+          setLoading(false);
+          return;
+        }
+
         setCadeiraSelecionada(cadeira);
       } catch (error) {
         console.log(error.response?.data || error.message);
@@ -115,31 +124,32 @@ export default function Reserva() {
               <p className="resumo-item">
                 Filme:{" "}
                 <span className="resumo-valor">
-                  {sessaoSelecionada.filme.titulo}
+                  {sessaoSelecionada.filme?.titulo || "Indisponível"}
                 </span>
               </p>
               <p className="resumo-item">
                 Horário:{" "}
                 <span className="resumo-valor">
-                  {new Date(sessaoSelecionada.dataHora).toLocaleString(
-                    "pt-BR",
-                    {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    }
-                  )}
+                  {sessaoSelecionada.dataHora
+                    ? new Date(sessaoSelecionada.dataHora).toLocaleString(
+                        "pt-BR",
+                        {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )
+                    : "Indisponível"}
                 </span>
               </p>
+              {numeroSala && (
+                <p className="resumo-item">
+                  Sala: <span className="resumo-valor">{numeroSala}</span>
+                </p>
+              )}
             </>
-          )}
-
-          {numeroSala && (
-            <p className="resumo-item">
-              Sala: <span className="resumo-valor">{numeroSala}</span>
-            </p>
           )}
 
           {cadeiraSelecionada && (
