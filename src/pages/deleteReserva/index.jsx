@@ -63,10 +63,9 @@ export default function DeleteReserva() {
       <div>
         {reserva && (
           <div className="reserva">
-            <div style={{ display: "flex", gap: "10px", flexDirection: "row" }}>
-              <h1>Deseja cancelar a seguinte</h1>
-              <h1 style={{ color: "#e94560" }}>reserva?</h1>
-            </div>
+            <h1>Deseja cancelar a seguinte</h1>
+            <h1 style={{ color: "#e94560" }}>reserva?</h1>
+
             <p>
               <span className="label">Filme:</span>{" "}
               <span className="valor">{reserva.sessao.filme.titulo}</span>
