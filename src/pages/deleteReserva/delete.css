@@ -12,6 +12,10 @@
   width: 50%;
   margin: 20px auto;
 }
+.reserva h1 {
+  margin: 0;
+  line-height: 1;
+}
 
 .label {
   color: #e94560;
