@@ -14,7 +14,13 @@
 }
 .reserva h1 {
   margin: 0;
-  line-height: 1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.reserva-destaque {
+  color: #e94560;
 }
 
 .label {
@@ -58,7 +64,7 @@
   }
   .label,
   .valor {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -69,7 +75,7 @@
   }
   .label,
   .valor {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
   .deletar {
     font-size: 0.9rem;
