@@ -95,3 +95,44 @@ h2 {
     transform: rotate(360deg);
   }
 }
+@media (max-width: 600px) {
+  .sessoes-container {
+    padding: 1rem;
+  }
+
+  .sessoes-list {
+    gap: 1rem;
+  }
+
+  .sessao-card {
+    max-width: 100%;
+  }
+
+  .sessao-button {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .sessao-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .no-sessoes {
+    font-size: 1rem;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+}
