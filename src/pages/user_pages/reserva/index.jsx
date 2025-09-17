@@ -81,9 +81,7 @@ export default function Reserva() {
       }
     }
     Sessao();
-  }, [sessaoId, token]);
 
-  useEffect(() => {
     async function Cadeira() {
       try {
         const response = await api.get(`/sessions/${sessaoId}/cadeiras`, {
@@ -96,7 +94,7 @@ export default function Reserva() {
       }
     }
     Cadeira();
-  }, [cadeiraId, sessaoId, token]);
+  }, [sessaoId, token, cadeiraId]);
 
   return (
     <>
