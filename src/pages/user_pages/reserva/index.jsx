@@ -50,7 +50,6 @@ export default function Reserva() {
   }
 
   useEffect(() => {
-    // 🔹 reset dos estados
     setSessaoSelecionada(null);
     setCadeiraSelecionada(null);
     setNumeroSala(null);
@@ -62,9 +61,17 @@ export default function Reserva() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const sessaoData = Array.isArray(sessaoResponse.data)
-          ? sessaoResponse.data.find((s) => Number(s.id) === Number(sessaoId))
-          : sessaoResponse.data;
+        let sessaoData;
+
+        if (Array.isArray(sessaoResponse.data)) {
+          sessaoData = sessaoResponse.data.find(
+            (s) => String(s.id) === String(sessaoId)
+          );
+        } else if (sessaoResponse.data.movies) {
+          sessaoData = sessaoResponse.data.movies;
+        } else {
+          sessaoData = sessaoResponse.data;
+        }
 
         if (!sessaoData) {
           console.error("Sessão não encontrada!");
@@ -91,7 +98,7 @@ export default function Reserva() {
         setNumeroSala(numero);
 
         const cadeira = cadeirasResponse.data.find(
-          (c) => Number(c.id) === Number(cadeiraId)
+          (c) => String(c.id) === String(cadeiraId)
         );
 
         if (!cadeira) {
