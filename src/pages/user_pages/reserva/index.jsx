@@ -27,8 +27,12 @@ export default function Reserva() {
           },
         }
       );
-      setCadeiraSelecionada(null), setSessaoSelecionada(null);
+
+      // 🔹 Resetando corretamente os estados
+      setCadeiraSelecionada(null);
+      setSessaoSelecionada(null);
       setNumeroSala(null);
+
       Swal.fire({
         title: "Reserva feita!",
         text: "Sua cadeira foi reservada com sucesso.",
@@ -42,7 +46,7 @@ export default function Reserva() {
         navigate("/");
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response?.data || error.message);
 
       Swal.fire({
         title: "Erro!",
@@ -56,9 +60,11 @@ export default function Reserva() {
       });
     }
   }
+
   useEffect(() => {
     async function carregarDados() {
       try {
+        // 🔹 Pega a sessão primeiro
         const sessaoResponse = await api.get(`/sessions/${sessaoId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -69,6 +75,7 @@ export default function Reserva() {
 
         setSessaoSelecionada(sessao);
 
+        // 🔹 Busca sala + cadeiras em paralelo
         const [salaResponse, cadeirasResponse] = await Promise.all([
           api.get(`/salas/${sessao.salaId}`, {
             headers: { Authorization: `Bearer ${token}` },
@@ -78,13 +85,15 @@ export default function Reserva() {
           }),
         ]);
 
+        // Atualiza sala
         const numero = Array.isArray(salaResponse.data)
           ? salaResponse.data[0].numeroSala
           : salaResponse.data.numeroSala;
         setNumeroSala(numero);
 
+        // Atualiza cadeira
         const cadeira = cadeirasResponse.data.find(
-          (c) => c.id === Number(cadeiraId)
+          (c) => c.id === Number(cadeiraId) // 🔹 compara como number
         );
         setCadeiraSelecionada(cadeira);
       } catch (error) {
@@ -96,48 +105,48 @@ export default function Reserva() {
   }, [sessaoId, cadeiraId, token]);
 
   return (
-    <>
-      <div className="resumo-container">
-        <h1>Resumo da sua reserva</h1>
+    <div className="resumo-container">
+      <h1>Resumo da sua reserva</h1>
 
-        {sessaoSelecionada && (
-          <>
-            <p className="resumo-item">
-              Filme:{" "}
-              <span className="resumo-valor">
-                {sessaoSelecionada.filme.titulo}
-              </span>
-            </p>
-            <p className="resumo-item">
-              Horário:{" "}
-              <span className="resumo-valor">
-                {new Date(sessaoSelecionada.dataHora).toLocaleString("pt-BR", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </span>
-            </p>
-          </>
-        )}
+      {sessaoSelecionada && (
+        <>
+          <p className="resumo-item">
+            Filme:{" "}
+            <span className="resumo-valor">
+              {sessaoSelecionada.filme.titulo}
+            </span>
+          </p>
+          <p className="resumo-item">
+            Horário:{" "}
+            <span className="resumo-valor">
+              {new Date(sessaoSelecionada.dataHora).toLocaleString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </span>
+          </p>
+        </>
+      )}
 
+      {numeroSala && (
         <p className="resumo-item">
           Sala: <span className="resumo-valor">{numeroSala}</span>
         </p>
+      )}
 
-        {cadeiraSelecionada && (
-          <p className="resumo-item">
-            Cadeira:{" "}
-            <span className="resumo-valor">{cadeiraSelecionada.numeracao}</span>
-          </p>
-        )}
+      {cadeiraSelecionada && (
+        <p className="resumo-item">
+          Cadeira:{" "}
+          <span className="resumo-valor">{cadeiraSelecionada.numeracao}</span>
+        </p>
+      )}
 
-        <button className="confirmar-button" onClick={Reservar}>
-          Confirmar Reserva
-        </button>
-      </div>
-    </>
+      <button className="confirmar-button" onClick={Reservar}>
+        Confirmar Reserva
+      </button>
+    </div>
   );
 }
