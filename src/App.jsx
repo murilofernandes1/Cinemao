@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import PrivateRoutes from "./routes/PrivateRoute";
 import AdminRoutes from "./routes/AdminRoutes";
 import Login from "./pages/user_pages/login/index";
@@ -17,7 +17,7 @@ import NotFound from "./pages/NotFound/NotFound";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route element={<PublicRoutes />}>
             <Route path="/login" element={<Login />} />
@@ -29,7 +29,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/sessions/:sessaoId/cadeiras" element={<Cadeiras />} />
-            <Route index element={<Home />} />
+
             <Route
               path="/sessions/:sessaoId/:cadeiraId/:userId"
               element={<Reserva />}
@@ -50,7 +50,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
