@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 
-export default function Header() {
+export default function HeaderAdm() {
   const navigate = useNavigate();
 
   function Sair() {

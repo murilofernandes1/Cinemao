@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { decodeJWT } from "../utils/decodeJWT";
-import Header from "../components/header";
 import Footer from "../components/header/footer";
+import HeaderAdm from "../components/headerAdm";
 
 export default function AdminRoutes() {
   const ADMIN = "ADMIN";
@@ -19,7 +19,7 @@ export default function AdminRoutes() {
   if (token || ADMIN) {
     return (
       <>
-        <Header /> <Outlet /> <Footer />
+        <HeaderAdm /> <Outlet /> <Footer />
       </>
     );
   }
