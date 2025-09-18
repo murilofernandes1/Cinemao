@@ -12,6 +12,7 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState(localStorage.getItem("name") || "");
   const [token] = useState(localStorage.getItem("token") || "");
+  const [role] = useState(localStorage.getItem("role") || "");
   const [reservas, setReservas] = useState([]);
   const [showDados, setShowDados] = useState(false);
   const [showReservas, setShowReservas] = useState(false);
@@ -239,6 +240,9 @@ export default function Profile() {
             </form>
           </>
         )}
+        {role === "ADMIN" ? (
+          <button onClick={() => navigate("/admin")}>Dashboard do Admin</button>
+        ) : null}
       </div>
     </>
   );
