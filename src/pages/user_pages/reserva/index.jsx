@@ -117,7 +117,13 @@ export default function Reserva() {
 
     carregarDados();
   }, [sessaoId, cadeiraId, token]);
-
+  {
+    loading && (
+      <div className="spinner-overlay">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
   return (
     <div className="resumo-container">
       <h1>Resumo da sua reserva</h1>
