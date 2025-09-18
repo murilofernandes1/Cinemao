@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { decodeJWT } from "../utils/decodeJWT";
 import Footer from "../components/header/footer";
-import HeaderAdm from "../components/headerAdm";
+import Header from "../components/header";
 
 export default function AdminRoutes() {
   const token = localStorage.getItem("token");
@@ -18,7 +18,7 @@ export default function AdminRoutes() {
 
   return (
     <>
-      <HeaderAdm />
+      <Header />
       <Outlet />
       <Footer />
     </>
