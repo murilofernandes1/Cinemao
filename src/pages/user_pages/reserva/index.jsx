@@ -117,21 +117,17 @@ export default function Reserva() {
 
     carregarDados();
   }, [sessaoId, cadeiraId, token]);
-  {
-    loading && (
-      <div className="spinner-overlay">
-        <div className="spinner"></div>
-      </div>
-    );
-  }
+
   return (
     <div className="resumo-container">
-      <h1>Resumo da sua reserva</h1>
-
       {loading ? (
-        <div className="spinner"></div>
+        <div className="spinner-overlay">
+          <div className="spinner"></div>
+        </div>
       ) : (
         <>
+          <h1>Resumo da sua reserva</h1>
+
           {sessaoSelecionada && (
             <>
               <p className="resumo-item">
@@ -174,7 +170,11 @@ export default function Reserva() {
             </p>
           )}
 
-          <button className="confirmar-button" onClick={Reservar}>
+          <button
+            className="confirmar-button"
+            onClick={Reservar}
+            disabled={loading}
+          >
             Confirmar Reserva
           </button>
         </>
