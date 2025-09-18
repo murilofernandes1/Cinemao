@@ -6,10 +6,9 @@ import DeleteSession from "../../admComponents/Sessions/deleteSession";
 export default function AdminDashboard() {
   return (
     <>
-      <h1>Filmes</h1>
       <AddMovies />
       <DeleteMovies />
-      <h1>Sessões</h1>
+
       <AddSession />
       <DeleteSession />
     </>

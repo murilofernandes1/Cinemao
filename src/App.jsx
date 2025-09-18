@@ -39,16 +39,6 @@ function App() {
 
           <Route element={<AdminRoutes />}>
             <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/movies/:id" element={<Filme />} />
-            <Route path="/admin/profile" element={<Profile />} />
-            <Route
-              path="/admin/sessions/:sessaoId/cadeiras"
-              element={<Cadeiras />}
-            />
-            <Route
-              path="/admin/sessions/:sessaoId/:cadeiraId/:userId"
-              element={<Reserva />}
-            />
           </Route>
 
           <Route path="*" element={<NotFound />} />
