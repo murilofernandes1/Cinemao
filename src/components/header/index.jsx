@@ -36,6 +36,6 @@ export default function Header() {
         <span className="logo-mão">mão</span>
       </div>
       </header/>
-)
-  )}
+)}
+  )
 }
