@@ -11,13 +11,12 @@ export default function Header() {
   }
   
   return (
+    {token ?  (
     <header className="header-container">
-      {token ?  (
       <div className="logo" onClick={() => navigate("/")}>
         <span className="logo-cine">Cine</span>
         <span className="logo-mão">mão</span>
       </div>
-
       <nav className="nav-buttons">
         <button onClick={() => navigate("/")} className="nav-btn">
           Home
@@ -31,10 +30,12 @@ export default function Header() {
       </nav>
     </header>
 ) : (
+    <header className="header-container">
    <div className="logo" onClick={() => navigate("/")}>
         <span className="logo-cine">Cine</span>
         <span className="logo-mão">mão</span>
       </div>
+      </header/>
 )
   );
 }
